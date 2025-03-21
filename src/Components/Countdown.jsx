@@ -6,7 +6,7 @@ import landco from "../assets/pictures/landco.png";
 
 const Countdown = () => {
   // Initial target for the Earth Hour countdown phase.
-  const initialTarget = new Date("March 22, 2025 20:30:00").getTime();
+  const initialTarget = new Date("March 22, 2025 6:17:00").getTime();
   const [phase, setPhase] = useState("earthHourCountdown"); // "earthHourCountdown", "earthHourVideo", "lightsOnCountdown", "lightsOnVideo"
   const [target, setTarget] = useState(initialTarget);
   const [timeLeft, setTimeLeft] = useState(calculateTimeLeft(initialTarget));
@@ -60,7 +60,7 @@ const Countdown = () => {
   const handleVideoEnd = useCallback(() => {
     if (phase === "earthHourVideo") {
       // After Earth Hour video ends, start the Lights On countdown.
-      const newTarget = new Date("March 22, 2025 21:30:00").getTime();
+      const newTarget = new Date("March 22, 2025 6:20:00").getTime();
       setTarget(newTarget);
       setTimeLeft(calculateTimeLeft(newTarget));
       setPhase("lightsOnCountdown");
@@ -129,30 +129,36 @@ const Countdown = () => {
         </div>
 
         {phase.endsWith("Countdown") && timeLeft && (
-          <div className="flex justify-center gap-24 text-[8rem] drop-shadow-[0_0_10px_rgba(104,201,68,0.8)] uppercase ">
-            <div className="flex flex-col items-center">
-              <span className="text-white rounded-full p-4 shadow-md">
-                {timeLeft.days || "0"}
-              </span>
-              <span className="text-lg text-white">Days</span>
+          <div>
+            <div className="flex justify-center gap-24 text-[8rem] drop-shadow-[0_0_10px_rgba(104,201,68,0.8)] uppercase ">
+              <div className="flex flex-col items-center">
+                <span className="text-white rounded-full p-4 shadow-md">
+                  {timeLeft.days || "0"}
+                </span>
+                <span className="text-lg text-white">Days</span>
+              </div>
+              <div className="flex flex-col items-center">
+                <span className="text-white rounded-full p-4 shadow-md">
+                  {timeLeft.hours || "0"}
+                </span>
+                <span className="text-lg text-white">Hours</span>
+              </div>
+              <div className="flex flex-col items-center">
+                <span className="text-white rounded-full p-4 shadow-md">
+                  {timeLeft.minutes || "0"}
+                </span>
+                <span className="text-lg text-white">Minutes</span>
+              </div>
+              <div className="flex flex-col items-center">
+                <span className="text-white rounded-full p-4 shadow-md">
+                  {timeLeft.seconds || "0"}
+                </span>
+                <span className="text-lg text-white">Seconds</span>
+              </div>
             </div>
-            <div className="flex flex-col items-center">
-              <span className="text-white rounded-full p-4 shadow-md">
-                {timeLeft.hours || "0"}
-              </span>
-              <span className="text-lg text-white">Hours</span>
-            </div>
-            <div className="flex flex-col items-center">
-              <span className="text-white rounded-full p-4 shadow-md">
-                {timeLeft.minutes || "0"}
-              </span>
-              <span className="text-lg text-white">Minutes</span>
-            </div>
-            <div className="flex flex-col items-center">
-              <span className="text-white rounded-full p-4 shadow-md">
-                {timeLeft.seconds || "0"}
-              </span>
-              <span className="text-lg text-white">Seconds</span>
+
+            <div className=" text-3xl flex flex-row justify-center mt-10 drop-shadow-[0_0_10px_rgba(225,225,225,0.8)]">
+              <p> Live Band at the Lobby on March 22, 2025 at 7:00 PM </p>
             </div>
           </div>
         )}
